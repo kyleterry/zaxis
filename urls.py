@@ -1,13 +1,18 @@
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls.defaults import include
 from django.contrib import admin
+import dselector
 
 admin.autodiscover()
 
-urlpatterns = patterns('',
+parser = dselector.Parser()
+url = parser.url
+
+urlpatterns = parser.patterns('',
     # Examples:
     # url(r'^$', 'zaxis.views.home', name='home'),
     # url(r'^zaxis/', include('zaxis.foo.urls')),
 
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'!', include('zaxis.books.urls')),
+    url(r'admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )

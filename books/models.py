@@ -30,6 +30,10 @@ class Author(models.Model):
     def __unicode__(self):
         return '%s %s %s' % (self.first_name, self.middle_name, self.last_name)
 
+    @property
+    def full_name(self):
+        return '%s %s %s' % (self.first_name, self.middle_name, self.last_name)
+
 
 class PublishingCompany(models.Model):
 

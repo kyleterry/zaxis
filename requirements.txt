@@ -1,0 +1,6 @@
+django
+south
+django-selector
+django-annoying
+django-extensions
+ipdb
