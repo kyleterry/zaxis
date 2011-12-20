@@ -7,7 +7,8 @@ class Book(models.Model):
     title = models.CharField(max_length=255)
     subtitle = models.CharField(max_length=255, null=True, blank=True)
     edition = models.CharField(max_length=255, null=True, blank=True)
-    isbn = models.CharField(max_length=255)
+    isbn = models.CharField(max_length=255, default='0', null=True, blank=True)
+    book_type = models.ManyToManyField('BookType', null=True, blank=True)
     year = models.IntegerField()
     authors = models.ManyToManyField('Author')
     publishing_company = models.ForeignKey('PublishingCompany')
@@ -34,6 +35,15 @@ class PublishingCompany(models.Model):
 
     name = models.CharField(max_length=255)
     website = models.TextField(null=True, blank=True)
+
+    def __unicode__(self):
+        return self.name
+
+
+class BookType(models.Model):
+
+    name = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
         return self.name
