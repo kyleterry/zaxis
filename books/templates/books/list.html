@@ -9,14 +9,11 @@
   </thead>
   <tbody>
     {% for book in books %}
-    <tr>
-      <td>{{book.title}}</td>
+    <tr id="book_{{book.id}}">
+    <td><a href="{% url books_view book.id %}">{{book.title}}</a></td>
       <td>
         {% for author in book.authors.all %}
-        {{author.full_name}}
-        {% if not forloop.last %}
-        , 
-        {% endif %}
+        {{author.full_name}}{% if not forloop.last %}, {% endif %}
         {% endfor %}
       </td>
       <td>{{book.created_at}}</td>
